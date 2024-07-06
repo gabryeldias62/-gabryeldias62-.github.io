@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gabryel Dias - Desenvolvedor</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: url('https://camo.githubusercontent.com/58cfe2601d00a43481a06c83d377b4e54c6f0a8833fe9e373589b8d0b99fe533/68747470733a2f2f6861636b65726e6f6f6e2e636f6d2f696d616765732f66327078333666792e676966') no-repeat center center fixed;
+            background-size: 212%; 
+            background-position:center;
+            opacity: 1.8;
+        }
+        header {
+            background-color: rgba(34, 34, 34, 0.6); 
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .tabs {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            overflow-x: auto; 
+            -webkit-overflow-scrolling: touch; 
+        }
+        .tab {
+            flex: 1;
+            text-align: center;
+            padding: 0.5rem 1rem;
+            background-color: #ddd;
+            cursor: pointer;
+            position: relative;
+        }
+        .tab.active {
+            background-color: #222;
+            color: #fff;
+        }
+        .section {
+            display: none; 
+            background-color: rgba(255, 255, 255, 0.8); 
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            max-height: 500px; 
+            overflow-y: auto; 
+        }
+        .section.active {
+            display: block; 
+        }
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding-bottom: 3rem; 
+        }
+        .contact-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        .contact-form .message-note {
+            font-size: 0.8rem;
+            color: #888;
+            margin-bottom: 1rem;
+            opacity: 0.6; 
+        }
+        .contact-form input[type="text"], 
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; 
+        }
+        .contact-form textarea {
+            height: 150px;
+        }
+        .contact-form input[type="submit"] {
+            background-color: #222;
+            color: #fff;
+            border: none;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 4px;
+            width: 100%; 
+            margin-top: 1rem;
+        }
+        .contact-form input[type="submit"]:hover {
+            background-color: #444;
+        }
+        footer {
+            background-color: #222;
+            color: #fff;
+            text-align: center;
+            padding: 0.5rem;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 5rem; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        footer a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Gabryel Dias</h1>
+        <p>Desenvolvedor</p>
+    </header>
+    <div class="container">
+        <div class="tabs">
+            <div class="tab active" data-section="sobre" onclick="openSection('sobre')">Sobre Mim</div>
+            <div class="tab" data-section="portfolio" onclick="openSection('portfolio')">Portfólio</div>
+            <div class="tab" data-section="contato" onclick="openSection('contato')">Contato</div>
+        </div>
+        
+        <section class="section active" id="sobre-section">
+            <div class="section-content">
+                <p>Olá, seja bem vindo! <br>Como exposto no site, meu nome é Gabryel Dias, tenho 22 anos, sou amante de tecnologia, estudante/desenvolvedor de softwares, venho hoje apresentar um pouco sobre mim e apresentar alguns de meus projetos neste site totalmente interativo e dinâmico!<br><br>-Formação: Ensino superior: Análise e desenvolmimento de sistemas - Cursando<br><br>-Técnologias: Python, Dart/Flutter, Javascript,HTML,CSS,Unreal Engine</p>
+               
+            </div>
+        </section>
+
+        <section class="section" id="portfolio-section">
+            <div class="section-content">
+                <p>Acesse aqui meu GitHub e conheça meus projetos!<br></p>
+                <a href="https://github.com/gabryeldias62" target="_blank">Meu GitHub</a>
+                
+            </div>
+        </section>
+
+        <section class="section" id="contato-section">
+            <div class="contact-form">
+                <p class="message-note">*Assuntos e mensagens abaixo serão enviados ao meu Email profissional!*</p>
+                <form id="contact-form">
+                    <label for="assunto">Assunto:</label>
+                    <input type="text" id="assunto" name="assunto" required>
+                    
+                    <label for="mensagem">Mensagem:</label>
+                    <textarea id="mensagem" name="mensagem" required></textarea>
+                    
+                    <input type="submit" value="Enviar">
+                </form>
+            </div>
+        </section>
+    </div>
+    <footer>
+        <p>&copy; 2024 Gabryel Dias. Todos os direitos reservados.</p>
+        <a href="https://www.linkedin.com/in/gabryel-dias-2233221b2/" target="_blank">LinkedIn</a>
+    </footer>
+
+    <script>
+        var tabs = document.querySelectorAll('.tab');
+        var sections = document.querySelectorAll('.section');
+
+        tabs.forEach(function(tab) {
+            tab.addEventListener('click', function() {
+                var sectionId = tab.getAttribute('data-section');
+                openSection(sectionId);
+            });
+        });
+
+        function openSection(sectionId) {
+            
+            sections.forEach(function(section) {
+                section.classList.remove('active');
+            });
+
+           
+            var selectedSection = document.getElementById(sectionId + '-section');
+            selectedSection.classList.add('active');
+
+            
+            tabs.forEach(function(tab) {
+                var tabSectionId = tab.getAttribute('data-section');
+                if (tabSectionId === sectionId) {
+                    tab.classList.add('active');
+                } else {
+                    tab.classList.remove('active');
+                }
+            });
+        }
+
+        // Formulário de Contato
+        var form = document.getElementById('contact-form');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            var assunto = document.getElementById('assunto').value;
+            var mensagem = document.getElementById('mensagem').value;
+
+            // Preenche automaticamente o assunto e a mensagem no formato de email
+            var subject = assunto + ' - Contato do Site';
+            var body = 'Olá Gabryel,\n\n';
+            body += 'Segue abaixo a mensagem recebida pelo formulário de contato do seu site:\n\n';
+            body += 'Assunto: ' + assunto + '\n';
+            body += 'Mensagem:\n' + mensagem;
+
+            // Monta o link "mailto" com os parâmetros
+            var mailtoLink = 'mailto:gabryeldias62@gmail.com' +
+                '?subject=' + encodeURIComponent(subject) +
+                '&body=' + encodeURIComponent(body);
+
+            // Abre o cliente de email padrão do usuário
+            window.location.href = mailtoLink;
+        });
+    </script>
+</body>
+</html>
